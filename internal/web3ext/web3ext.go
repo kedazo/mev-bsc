@@ -28,8 +28,6 @@ var Modules = map[string]string{
 	"personal": PersonalJs,
 	"rpc":      RpcJs,
 	"txpool":   TxpoolJs,
-	"les":      LESJs,
-	"vflux":    VfluxJs,
 	"dev":      DevJs,
 }
 
@@ -631,6 +629,15 @@ web3._extend({
 			call: 'eth_callBundle',
 			params: 6
 		}),
+			name: 'getBlobSidecars',
+			call: 'eth_getBlobSidecars',
+			params: 1,
+		}),
+		new web3._extend.Method({
+			name: 'getBlobSidecarByTxHash',
+			call: 'eth_getBlobSidecarByTxHash',
+			params: 1,
+		}),
 	],
 	properties: [
 		new web3._extend.Property({
@@ -812,91 +819,6 @@ web3._extend({
 			name: 'contentFrom',
 			call: 'txpool_contentFrom',
 			params: 1,
-		}),
-	]
-});
-`
-
-const LESJs = `
-web3._extend({
-	property: 'les',
-	methods:
-	[
-		new web3._extend.Method({
-			name: 'getCheckpoint',
-			call: 'les_getCheckpoint',
-			params: 1
-		}),
-		new web3._extend.Method({
-			name: 'clientInfo',
-			call: 'les_clientInfo',
-			params: 1
-		}),
-		new web3._extend.Method({
-			name: 'priorityClientInfo',
-			call: 'les_priorityClientInfo',
-			params: 3
-		}),
-		new web3._extend.Method({
-			name: 'setClientParams',
-			call: 'les_setClientParams',
-			params: 2
-		}),
-		new web3._extend.Method({
-			name: 'setDefaultParams',
-			call: 'les_setDefaultParams',
-			params: 1
-		}),
-		new web3._extend.Method({
-			name: 'addBalance',
-			call: 'les_addBalance',
-			params: 2
-		}),
-	],
-	properties:
-	[
-		new web3._extend.Property({
-			name: 'latestCheckpoint',
-			getter: 'les_latestCheckpoint'
-		}),
-		new web3._extend.Property({
-			name: 'checkpointContractAddress',
-			getter: 'les_getCheckpointContractAddress'
-		}),
-		new web3._extend.Property({
-			name: 'serverInfo',
-			getter: 'les_serverInfo'
-		}),
-	]
-});
-`
-
-const VfluxJs = `
-web3._extend({
-	property: 'vflux',
-	methods:
-	[
-		new web3._extend.Method({
-			name: 'distribution',
-			call: 'vflux_distribution',
-			params: 2
-		}),
-		new web3._extend.Method({
-			name: 'timeout',
-			call: 'vflux_timeout',
-			params: 2
-		}),
-		new web3._extend.Method({
-			name: 'value',
-			call: 'vflux_value',
-			params: 2
-		}),
-	],
-	properties:
-	[
-		new web3._extend.Property({
-			name: 'requestStats',
-			getter: 'vflux_requestStats'
 		}),
 	]
 });
